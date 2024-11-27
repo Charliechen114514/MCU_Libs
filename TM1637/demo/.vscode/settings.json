@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "tim1637.h": "c",
+        "tim1637_params.h": "c",
+        "delay.h": "c",
+        "stm32f1xx.h": "c",
+        "gpio_driver.h": "c"
+    }
+}
