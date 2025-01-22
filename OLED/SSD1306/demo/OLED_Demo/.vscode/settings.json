@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "oled.h": "c",
+        "hard_iic.h": "c",
+        "oled_config.h": "c",
+        "i2c.h": "c",
+        "stm32f1xx_hal.h": "c",
+        "oled_base_driver.h": "c",
+        "ssd1306.h": "c",
+        "soft_iic.h": "c",
+        "oled_test.h": "c",
+        "stm32f1xx_hal_gpio.h": "c",
+        "ccgraphic_device_oled_adapter.h": "c",
+        "ccgraphic_device_adapter.h": "c"
+    }
+}
