@@ -17,6 +17,8 @@
         "ccgraphic_point.h": "c",
         "ccgraphic_base.h": "c",
         "ccgraphic_line.h": "c",
-        "ccgraphic_utils.h": "c"
+        "ccgraphic_utils.h": "c",
+        "ccgraphic_rectangle.h": "c",
+        "ccgraphic_arc.h": "c"
     }
 }

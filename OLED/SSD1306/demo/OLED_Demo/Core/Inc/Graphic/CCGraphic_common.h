@@ -6,6 +6,10 @@
 typedef unsigned char   uint8_t;
 #endif
 
+#ifndef int8_t
+typedef signed char     int8_t;
+#endif
+
 #ifndef uint16_t
 typedef unsigned short  uint16_t;
 #endif
@@ -13,6 +17,8 @@ typedef unsigned short  uint16_t;
 #ifndef int16_t
 typedef short           int16_t;
 #endif
+
+
 /* graphic device handler */
 typedef struct __DeviceProperty CCDeviceHandler;
 

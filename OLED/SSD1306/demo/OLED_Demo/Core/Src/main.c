@@ -95,7 +95,7 @@ int main(void)
   // test_set_pixel(&handle);
   CCDeviceHandler handler;
   on_test_init_hardiic_oled(&handler);
-  on_test_draw_circle(&handler);
+  on_test_draw_arc(&handler);
 
   /* USER CODE END 2 */
 

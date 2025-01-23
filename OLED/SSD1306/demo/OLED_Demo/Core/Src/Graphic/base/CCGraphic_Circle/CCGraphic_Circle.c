@@ -8,6 +8,13 @@ void CCGraphic_init_circle(
     circle->center = c;
     circle->radius = radius;
 }
+
+#define DRAW_OFFSET_POINT(point, offsetx, offsety) \
+    do { \
+        point.x = circle->center.x + (offsetx); \
+        point.y = circle->center.y + (offsety); \
+        CCGraphic_draw_point(handler, &point);}while(0)
+
 void CCGraphic_draw_circle(
     CCDeviceHandler* handler, CCGraphic_Circle* circle)
 {
@@ -17,12 +24,6 @@ void CCGraphic_draw_circle(
     int16_t d = 1 - circle->radius;
     int16_t x = 0;
     int16_t y = circle->radius;
-
-#define DRAW_OFFSET_POINT(point, offsetx, offsety) \
-    do { \
-        point.x = circle->center.x + (offsetx); \
-        point.y = circle->center.y + (offsety); \
-        CCGraphic_draw_point(handler, &point);}while(0)\
 
     DRAW_OFFSET_POINT(p, x, y);
     DRAW_OFFSET_POINT(p, -x, -y);
@@ -47,5 +48,43 @@ void CCGraphic_draw_circle(
 
 void CCGraphic_drawfilled_circle(CCDeviceHandler* handler, CCGraphic_Circle* circle)
 {
-    
+    CCGraphic_Point p;
+    int16_t d = 1 - circle->radius;
+    int16_t x = 0;
+    int16_t y = circle->radius;
+
+    DRAW_OFFSET_POINT(p, x, y);
+    DRAW_OFFSET_POINT(p, -x, -y);
+    DRAW_OFFSET_POINT(p, y, x);
+    DRAW_OFFSET_POINT(p, -y, -x);
+
+    for(int16_t i = -y; i < y; i++)
+        DRAW_OFFSET_POINT(p, 0, i);
+
+    while(x < y)
+    {
+        x++;
+        if(d < 0){ d += 2 * x + 1;}
+        else {y--; d += 2 * (x - y) + 1;}
+        DRAW_OFFSET_POINT(p, x, y);
+        DRAW_OFFSET_POINT(p, y, x);
+        DRAW_OFFSET_POINT(p, -x, -y);
+        DRAW_OFFSET_POINT(p, -y, -x);
+        DRAW_OFFSET_POINT(p, x, -y);
+        DRAW_OFFSET_POINT(p, y, -x);
+        DRAW_OFFSET_POINT(p, -x, y);
+        DRAW_OFFSET_POINT(p, -y, x);   
+        for(int16_t i = -y; i < y; i++)
+        {
+            DRAW_OFFSET_POINT(p, x, i);
+            DRAW_OFFSET_POINT(p, -x, i);  
+        }
+        for(int16_t i = -x; i < x; i++)
+        {
+            DRAW_OFFSET_POINT(p, y, i);
+            DRAW_OFFSET_POINT(p, -y, i);  
+        }              
+    }    
 }
+
+#undef DRAW_OFFSET_POINT

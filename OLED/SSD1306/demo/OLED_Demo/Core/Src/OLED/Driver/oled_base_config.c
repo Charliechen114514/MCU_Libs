@@ -123,6 +123,10 @@ void oled_helper_setpixel(OLED_Handle* handle, uint16_t x, uint16_t y)
 {
     // current unused
     (void)handle;
-    OLED_GRAM[y / 8][x] |= 0x01 << (y % 8);
+    if( 
+        0 <= x && x <= OLED_WIDTH &&
+        0 <= y && y <= OLED_HEIGHT * 8
+    )
+        OLED_GRAM[y / 8][x] |= 0x01 << (y % 8);
 }
 

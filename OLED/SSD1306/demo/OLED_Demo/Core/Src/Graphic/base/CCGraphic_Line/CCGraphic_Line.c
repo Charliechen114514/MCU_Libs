@@ -38,101 +38,106 @@ static void __on_handle_horizental_line(
     }
 }
 
-void CCGraphic_draw_line(CCDeviceHandler* handler, CCGraphic_Line* line)
+// Bresenham's Line Algorithm, designed to avoid floating point calculations
+// References: https://www.cs.montana.edu/courses/spring2009/425/dslectures/Bresenham.pdf
+// https://www.bilibili.com/video/BV1364y1d7Lo
+void __pvt_BresenhamMethod_line(CCDeviceHandler* handler, CCGraphic_Line* line)
 {
+#define __pvt_fast_draw_point(X, Y) \
+    do { \
+        p.x = X; \
+        p.y = Y; \
+        CCGraphic_draw_point(handler, &p); \
+    } while(0)
+
+    // Define initial points for the line: p_left and p_right represent the endpoints
+    int16_t startX = line->p_left.x;
+    int16_t startY = line->p_left.y;
+    int16_t endX = line->p_right.x;
+    int16_t endY = line->p_right.y;
+
+    // Flags to indicate transformations of coordinates
+    uint8_t isYInverted = 0, isXYInverted = 0;
+    {
+        // If the start point's X coordinate is greater than the end point's X, swap the points
+        if (startX > endX) {
+            // Swap the X and Y coordinates for the start and end points
+            swap_int16(&startX, &endX);
+            swap_int16(&startY, &endY);
+        }
+
+        // If the start point's Y coordinate is greater than the end point's Y, invert the Y coordinates
+        if (startY > endY) {
+            // Invert Y coordinates to make the line direction consistent in the first quadrant
+            startY = -startY;
+            endY = -endY;
+            // Set the flag indicating Y coordinates were inverted
+            isYInverted = 1;
+        }
+
+        // If the line's slope (dy/dx) is greater than 1, swap X and Y coordinates for a shallower slope
+        if (endY - startY > endX - startX) {
+            // Swap X and Y coordinates for both points
+            swap_int16(&startX, &startY);
+            swap_int16(&endX, &endY);
+            // Set the flag indicating both X and Y coordinates were swapped
+            isXYInverted = 1;
+        }
+
+        // Calculate differences (dx, dy) and the decision variables for Bresenham's algorithm
+        const int16_t dx = endX - startX;
+        const int16_t dy = endY - startY;
+        const int16_t incrE = 2 * dy;  // Increment for eastward movement
+        const int16_t incrNE = 2 * (dy - dx);  // Increment for northeastward movement
+
+        int16_t decision = 2 * dy - dx;  // Initial decision variable
+        int16_t x = startX;  // Starting X coordinate
+        int16_t y = startY;  // Starting Y coordinate
+
+        // Draw the starting point and handle coordinate transformations based on flags
+        CCGraphic_Point p;
+        if (isYInverted && isXYInverted) {
+            __pvt_fast_draw_point(y, -x);
+        } else if (isYInverted) {
+            __pvt_fast_draw_point(x, -y);
+        } else if (isXYInverted) {
+            __pvt_fast_draw_point(y, x);
+        } else {
+            __pvt_fast_draw_point(x, y);
+        }
+
+        // Iterate through the X-axis to draw the rest of the line
+        while (x < endX) {
+            x++;  // Increment X coordinate
+            if (decision < 0) {
+                decision += incrE;  // Move eastward if decision variable is negative
+            } else {
+                y++;  // Move northeastward if decision variable is positive or zero
+                decision += incrNE;
+            }
+
+            // Draw each point along the line with coordinate transformation as needed
+            if (isYInverted && isXYInverted) {
+                __pvt_fast_draw_point(y, -x);
+            } else if (isYInverted) {
+                __pvt_fast_draw_point(x, -y);
+            } else if (isXYInverted) {
+                __pvt_fast_draw_point(y, x);
+            } else {
+                __pvt_fast_draw_point(x, y);
+            }
+        }
+    }
+}
+
+void CCGraphic_draw_line(CCDeviceHandler* handler, CCGraphic_Line* line)
+{ 
     // test if the vertical
     if(line->p_left.x == line->p_right.x) 
         return __on_handle_vertical_line(handler, line);   
     if(line->p_left.y == line->p_right.y)
         return __on_handle_horizental_line(handler, line);
-    
-	/*https://www.cs.montana.edu/courses/spring2009/425/dslectures/Bresenham.pdf*/
-	/*https://www.bilibili.com/video/BV1364y1d7Lo*/
-    /* follows are the implementations */
-
-    uint8_t y_map_flag  = 0;
-    uint8_t xy_map_flag = 0;
-
-    CCGraphic_Line l = *line;
-
-    if(line->p_left.x > line->p_right.x)
-    {
-        swap_uint16(&(l.p_left.x), &(l.p_right.x));
-        swap_uint16(&(l.p_left.y), &(l.p_right.y));
-    }
-
-    if(line->p_left.y > line->p_right.y)
-    {
-        l.p_left.y = -l.p_left.y;
-        l.p_right.y = -l.p_right.y;
-
-        y_map_flag = 1;
-    }
-
-    if( l.p_right.y - l.p_left.y > 
-        l.p_right.x - l.p_left.x)
-    {
-        swap_uint16(&(l.p_left.x), &(l.p_left.y));
-        swap_uint16(&(l.p_right.x), &(l.p_right.y));
-        xy_map_flag = 1;
-    }
-
-    const int16_t dx = l.p_right.x - l.p_left.x;
-    const int16_t dy = l.p_right.y - l.p_left.y;
-    const int16_t incrE = 2 * dy;
-	const int16_t incrNE = 2 * (dy - dx);
-	int16_t d = 2 * dy - dx;
-	int16_t x = l.p_left.x;
-	int16_t y = l.p_left.y;
-    CCGraphic_Point p;
-
-    if(y_map_flag && xy_map_flag){
-        p.x = y;
-        p.y = -x;    
-    }
-    else if(y_map_flag){
-        p.x = x;
-        p.y = -y;
-    }
-    else if(xy_map_flag){
-        p.x = y;
-        p.y = x;        
-    }else{
-        p.x = x;
-        p.y = y;
-    }
-
-    CCGraphic_draw_point(handler, &p);
-
-    while(x < l.p_right.x)
-    {
-        x++;
-        if(d < 0) {
-            d+= incrE;
-        }
-        else {
-            y++; 
-            d+=incrNE;
-        }
-
-        if(y_map_flag && xy_map_flag){
-            p.x = y;
-            p.y = -x;    
-        }
-        else if(y_map_flag){
-            p.x = x;
-            p.y = -y;
-        }
-        else if(xy_map_flag){
-            p.x = y;
-            p.y = x;        
-        }else{
-            p.x = x;
-            p.y = y;
-        }
-
-        CCGraphic_draw_point(handler, &p);
-    }
+    return __pvt_BresenhamMethod_line(handler, line);
 }
 
 void CCGraphic_init_line(   CCGraphic_Line* line, 

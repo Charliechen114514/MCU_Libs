@@ -5,8 +5,8 @@
 
 typedef struct __CCGraphic_Circle
 {
-    CCGraphic_Point         center;
-    uint16_t                radius;
+    CCGraphic_Point             center;
+    PointBaseType               radius;
 }CCGraphic_Circle;
 
 void CCGraphic_init_circle(CCGraphic_Circle* circle, CCGraphic_Point c, uint8_t radius);

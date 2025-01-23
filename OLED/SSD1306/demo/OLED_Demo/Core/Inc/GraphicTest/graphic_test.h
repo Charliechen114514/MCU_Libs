@@ -7,4 +7,9 @@ void on_test_init_hardiic_oled(CCDeviceHandler* handle);
 void on_test_draw_points(CCDeviceHandler* handle);
 void on_test_draw_line(CCDeviceHandler* handle);
 void on_test_draw_circle(CCDeviceHandler* handle);
+void on_test_draw_rectangle(CCDeviceHandler* handle);
+void on_test_draw_triangle(CCDeviceHandler* handle);
+void on_test_draw_ellipse(CCDeviceHandler* handle);
+void on_test_draw_arc(CCDeviceHandler* handle);
+
 #endif
