@@ -39,5 +39,5 @@ void oled_helper_clear_frame(OLED_Handle* handle);
 
 void oled_helper_update(OLED_Handle* handle);
 
-void oled_helper_setpixel(OLED_Handle* handle, uint8_t x, uint8_t y);
+void oled_helper_setpixel(OLED_Handle* handle, uint16_t x, uint16_t y);
 #endif

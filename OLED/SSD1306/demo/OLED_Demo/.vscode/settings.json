@@ -11,6 +11,12 @@
         "oled_test.h": "c",
         "stm32f1xx_hal_gpio.h": "c",
         "ccgraphic_device_oled_adapter.h": "c",
-        "ccgraphic_device_adapter.h": "c"
+        "ccgraphic_device_adapter.h": "c",
+        "graphic_test.h": "c",
+        "ccgraphic_common.h": "c",
+        "ccgraphic_point.h": "c",
+        "ccgraphic_base.h": "c",
+        "ccgraphic_line.h": "c",
+        "ccgraphic_utils.h": "c"
     }
 }

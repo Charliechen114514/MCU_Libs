@@ -48,14 +48,14 @@ static void __on_fetch_oled_table(
                 (OLED_HARD_IIC_Private_Config*)(handle->private_handle);
             blank_operations->command_sender = config->operation.command_sender;
             blank_operations->data_sender = config->operation.data_sender;
-        }
+        }break;
         case OLED_SOFT_IIC_DRIVER_TYPE:
         {
             OLED_SOFT_IIC_Private_Config* config = 
                 (OLED_SOFT_IIC_Private_Config*)(handle->private_handle);
             blank_operations->command_sender = config->operation.command_sender;
             blank_operations->data_sender = config->operation.data_sender;
-        }
+        }break;
         default:
             break;
     }
@@ -119,7 +119,7 @@ void oled_init_softiic_handle(
     oled_helper_update(handle);
 }
 
-void oled_helper_setpixel(OLED_Handle* handle, uint8_t x, uint8_t y)
+void oled_helper_setpixel(OLED_Handle* handle, uint16_t x, uint16_t y)
 {
     // current unused
     (void)handle;

@@ -5,18 +5,21 @@ void init_device_oled(
     CCDeviceHandler* blank, CCGraphic_OLED_Config* onProvideConfigs)
 {
     OLED_Handle* handle = (OLED_Handle*)(blank->handle);
-    switch(handle->stored_handle_type)
+    OLED_Driver_Type type = onProvideConfigs->createType;
+    switch(type)
     {
         case OLED_SOFT_IIC_DRIVER_TYPE:
             oled_init_softiic_handle(
-                blank->handle,
-                (OLED_HARD_IIC_Private_Config*)(onProvideConfigs->related_configs)
+                handle,
+                (OLED_SOFT_IIC_Private_Config*)
+                (onProvideConfigs->related_configs)
             );
         break;
         case OLED_HARD_IIC_DRIVER_TYPE:
             oled_init_hardiic_handle(
-                blank->handle, 
-                (OLED_HARD_IIC_Private_Config*)(onProvideConfigs->related_configs));
+                handle, 
+                (OLED_HARD_IIC_Private_Config*)
+                (onProvideConfigs->related_configs));
         break;
     }
 }
@@ -33,7 +36,7 @@ void clear_device_oled(CCDeviceHandler* handler)
     oled_helper_clear_frame(handle);
 }
 
-void setpixel_device_oled(CCDeviceHandler* handler, uint8_t x, uint8_t y)
+void setpixel_device_oled(CCDeviceHandler* handler, uint16_t x, uint16_t y)
 {
     OLED_Handle* handle = (OLED_Handle*)handler->handle;
     oled_helper_setpixel(handle, x, y);

@@ -10,12 +10,12 @@
         likely used for drawing or other graphical manipulations.
 */
 typedef struct __CCGraphic_Point{
-    uint8_t                     x;
-    uint8_t                     y;
-    CCGraphic_BaseOperations    operations;
+    PointBaseType                     x;
+    PointBaseType                     y;
 }CCGraphic_Point;
 
-void CCGraphic_init_point(CCGraphic_Point* point, uint8_t x, uint8_t y);
+void CCGraphic_init_point(CCGraphic_Point* point, 
+        PointBaseType x, PointBaseType y);
 void CCGraphic_draw_point(CCDeviceHandler* handler, CCGraphic_Point* point);
 
 #endif

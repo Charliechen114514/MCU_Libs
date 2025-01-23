@@ -21,7 +21,7 @@ typedef void(*UpdateDevice)(
     CCDeviceHandler* handler);
 
 typedef void(*SetPixel)(
-    CCDeviceHandler* handler, uint8_t x, uint8_t y);
+    CCDeviceHandler* handler, uint16_t x, uint16_t y);
 
 typedef struct __DeviceOperations 
 {
@@ -49,7 +49,7 @@ void __register_paintdevice(
     CCDeviceType type);
 
 #define register_oled_paintdevice(handler, raw, config) \
-    __register_paintdevice(handler, raw_handle, config, OLED_Type)
+    __register_paintdevice(handler, raw, config, OLED_Type)
 
 
 

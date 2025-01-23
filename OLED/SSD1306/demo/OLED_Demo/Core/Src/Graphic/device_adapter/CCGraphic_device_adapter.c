@@ -1,5 +1,5 @@
 #include "Graphic/device_adapter/CCGraphic_device_oled_adapter.h"
-#include "Graphic/device_adapter/CCGraphic_device_adapter.h"
+#include "Graphic/CCGraphic_device_adapter.h"
 
 
 void __register_paintdevice(
