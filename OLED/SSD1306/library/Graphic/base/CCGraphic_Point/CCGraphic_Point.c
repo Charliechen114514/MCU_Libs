@@ -1,5 +1,5 @@
 #include "Graphic/base/CCGraphic_Point/CCGraphic_Point.h"
-#include "Graphic/device_adapter/CCGraphic_device_adapter.h"
+#include "Graphic/CCGraphic_device_adapter.h"
 
 void CCGraphic_draw_point(
     CCDeviceHandler* handler, CCGraphic_Point* point)
@@ -8,9 +8,9 @@ void CCGraphic_draw_point(
         handler, point->x, point->y);
 }
 
-void CCGraphic_init_point(CCGraphic_Point* point, uint8_t x, uint8_t y)
+void CCGraphic_init_point(CCGraphic_Point* point, 
+    PointBaseType x, PointBaseType y)
 {
     point->x = x;
     point->y = y;
-    point->operations.draw_self = CCGraphic_draw_point;
 }

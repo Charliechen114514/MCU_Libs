@@ -25,7 +25,7 @@ typedef struct __DeviceProperty CCDeviceHandler;
 /*  device all base object, a generic pointer type that can point to any type of 
     graphical item or object in the graphics system.
 */
-typedef void* CCGraphicItem;
-
+typedef void*       CCGraphicItem;
+typedef uint16_t    SizeBaseType;
 
 #endif

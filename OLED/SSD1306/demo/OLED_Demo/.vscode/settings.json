@@ -19,6 +19,16 @@
         "ccgraphic_line.h": "c",
         "ccgraphic_utils.h": "c",
         "ccgraphic_rectangle.h": "c",
-        "ccgraphic_arc.h": "c"
+        "ccgraphic_arc.h": "c",
+        "ccgraphic_textconfig.h": "c",
+        "ccgraphic_textitem.h": "c",
+        "ccgraphic_size.h": "c",
+        "ccgraphic_widgetbase.h": "c",
+        "ccgraphic_image.h": "c",
+        "ccgraphic_config.h": "c",
+        "ccgraphic_textedit.h": "c",
+        "ccgraphic_components_common.h": "c",
+        "ccgraphic_triangle.h": "c",
+        "ccgraphic_frame.h": "c"
     }
 }

@@ -15,13 +15,25 @@ void __register_paintdevice(
         case OLED_Type:
         {
             blank_handler->operations.init_function = 
-                init_device_oled;
+                (Initer)init_device_oled;
             blank_handler->operations.clear_device_function =
                 clear_device_oled;
             blank_handler->operations.set_pixel_device_function = 
                 setpixel_device_oled;
             blank_handler->operations.update_device_function = 
                 update_device_oled;
+            blank_handler->operations.clearArea_function =
+                clear_area_device_oled;
+            blank_handler->operations.reverse_device_function =
+                reverse_device_oled;
+            blank_handler->operations.reverseArea_function = 
+                reversearea_device_oled;
+            blank_handler->operations.updateArea_function = 
+                update_area_device_oled;
+            blank_handler->operations.draw_area_device_function =
+                draw_area_device_oled;
+            blank_handler->operations.property_function = 
+                property_fetcher_device_oled;
         }
         break;
     }

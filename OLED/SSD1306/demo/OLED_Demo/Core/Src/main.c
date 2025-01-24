@@ -26,7 +26,7 @@
 /* USER CODE BEGIN Includes */
 // #include "OLED.h"
 // #include "OLED_TEST/oled_test.h"
-#include "GraphicTest/graphic_test.h"
+#include "Test/GraphicTest/graphic_test.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -90,12 +90,10 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  // OLED_Handle handle;
-  // user_init_hard_iic_oled_handle(&handle);
-  // test_set_pixel(&handle);
+  // black : CLK Wight DIO gray gnd pur 3.3
   CCDeviceHandler handler;
   on_test_init_hardiic_oled(&handler);
-  on_test_draw_arc(&handler);
+  on_test_component_frame_test(&handler);
 
   /* USER CODE END 2 */
 

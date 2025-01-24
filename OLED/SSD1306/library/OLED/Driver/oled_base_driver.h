@@ -39,5 +39,26 @@ void oled_helper_clear_frame(OLED_Handle* handle);
 
 void oled_helper_update(OLED_Handle* handle);
 
-void oled_helper_setpixel(OLED_Handle* handle, uint8_t x, uint8_t y);
+void oled_helper_setpixel(OLED_Handle* handle, uint16_t x, uint16_t y);
+
+void oled_helper_clear_area(OLED_Handle* handle, 
+        uint16_t x, uint16_t y, uint16_t width, uint16_t height);
+
+void oled_helper_update_area(OLED_Handle* handle, 
+        uint16_t x, uint16_t y, uint16_t width, uint16_t height);
+
+void oled_helper_reverse(OLED_Handle* handle);
+
+void oled_helper_reversearea(OLED_Handle* handle, 
+        uint16_t x, uint16_t y, uint16_t width, uint16_t height);
+
+void oled_helper_draw_area(OLED_Handle* handle, 
+        uint16_t x, uint16_t y, uint16_t width, 
+        uint16_t height, uint8_t* sources);
+
+uint8_t     oled_support_rgb(OLED_Handle* handle);
+uint16_t    oled_width(OLED_Handle* handle);
+uint16_t    oled_height(OLED_Handle* handle);
+
+
 #endif

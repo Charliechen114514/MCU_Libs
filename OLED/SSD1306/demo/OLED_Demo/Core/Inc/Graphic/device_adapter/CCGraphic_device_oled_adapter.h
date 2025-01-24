@@ -21,4 +21,24 @@ void update_device_oled(CCDeviceHandler* handler);
 void clear_device_oled(CCDeviceHandler* handler);
 void setpixel_device_oled(CCDeviceHandler* handler, uint16_t x, uint16_t y);
 
+void clear_area_device_oled(CCDeviceHandler* handler, 
+        uint16_t x, uint16_t y, uint16_t width, uint16_t height);
+
+void update_area_device_oled(CCDeviceHandler* handler, 
+        uint16_t x, uint16_t y, uint16_t width, uint16_t height);
+
+void reverse_device_oled(CCDeviceHandler* handler);
+void reversearea_device_oled(CCDeviceHandler* handler, 
+        uint16_t x, uint16_t y, uint16_t width, uint16_t height);
+
+void draw_area_device_oled(
+    CCDeviceHandler* handler, 
+    uint16_t x, uint16_t y, 
+    uint16_t width, uint16_t height, uint8_t* sources
+);
+
+void property_fetcher_device_oled(
+    CCDeviceHandler* handler, void* getter, CommonProperty p
+);
+
 #endif
