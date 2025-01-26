@@ -72,6 +72,14 @@ static void __pvt_setText(
     __pvt_show(text_self);
 }
 
+static void __pvt_relocate(
+    CCGraphicTextEdit* edit, 
+    CCGraphic_Point p, CCGraphic_Size size)
+{
+    __pvt_hide(edit);
+    CCGraphicWidget_AsciiTextItem_relocate(edit->handle, p, size);
+}
+
 void CCGraphic_init_CCGraphicTextEdit(
     CCGraphicTextEdit*          text_self,
     CCDeviceHandler*            handler,
@@ -85,6 +93,7 @@ void CCGraphic_init_CCGraphicTextEdit(
     text_self->operations.clear             = __pvt_clear_text;
     text_self->operations.newLineText       = __pvt_newLine_text;
     text_self->operations.setText           = __pvt_setText;
+    text_self->operations.relocate          = __pvt_relocate;
 
     text_self->operations.operation.hide    = (Hide)__pvt_hide;
     text_self->operations.operation.show    = (Show)__pvt_show;

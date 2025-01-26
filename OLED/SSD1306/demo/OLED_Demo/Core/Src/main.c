@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "i2c.h"
 #include "gpio.h"
 
@@ -89,11 +90,12 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
+  MX_DMA_Init();
   /* USER CODE BEGIN 2 */
   // black : CLK Wight DIO gray gnd pur 3.3
   CCDeviceHandler handler;
   on_test_init_hardiic_oled(&handler);
-  on_test_component_frame_test(&handler);
+  on_test_component_menu(&handler);
 
   /* USER CODE END 2 */
 
@@ -102,12 +104,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  // HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
-//	  HAL_Delay(20);
-	  
-	  // OLED_ShowString(1,1,"Hahaha",OLED_8X16);
-	  // OLED_ShowChinese(1,20,"哈");
-	  // OLED_Update();
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

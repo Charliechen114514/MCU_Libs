@@ -22,4 +22,5 @@ void on_test_draw_ascii(CCDeviceHandler* handle);
 /* components test */
 void on_test_component_textEdit_test(CCDeviceHandler* handle);
 void on_test_component_frame_test(CCDeviceHandler* handle);
+void on_test_component_menu(CCDeviceHandler* handler);
 #endif

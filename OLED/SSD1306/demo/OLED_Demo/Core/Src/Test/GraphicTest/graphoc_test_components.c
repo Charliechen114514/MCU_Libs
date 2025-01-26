@@ -57,3 +57,104 @@ void on_test_component_frame_test(CCDeviceHandler* device)
     HAL_Delay(1000);
     frame.operation.operation.hide(&frame);
 }
+#include "Graphic/widgets/components/CCGraphic_Menu/CCGraphic_Menu.h"
+#include "Graphic/widgets/components/CCGraphic_Menu/CCGraphic_MenuItem.h"
+#include "Graphic/widgets/base/CCGraphic_Image/CCGraphic_Image.h"
+
+
+CCGraphic_MenuAnimations animations;
+CCGraphic_Menu      menu;
+CCGraphic_Menu      submenu;
+CCGraphic_MenuItem items[] = {
+    {"Play", &submenu, &menu},
+    {"Help", NO_SUB_MENU, &menu},
+    {"Settings", NO_SUB_MENU, &menu},
+    {"Quit", NO_SUB_MENU, &menu}
+};
+
+extern const uint8_t settingsImage[];
+extern const uint8_t helpImage[];
+extern const uint8_t quitImage[];
+extern const uint8_t playImage[];
+CCGraphic_Image     icons[] = {
+    {{0, 0}, {0, 0}, (uint8_t*)playImage},
+    {{0, 0}, {0, 0}, (uint8_t*)helpImage},
+    {{0, 0}, {0, 0}, (uint8_t*)settingsImage},
+    {{0, 0}, {0, 0}, (uint8_t*)quitImage},
+};
+
+CCGraphic_MenuItem itemsSub[] = {
+    {"Try",    NO_SUB_MENU, &menu},
+    {"Normally", NO_SUB_MENU, &menu}
+};
+
+CCGraphic_Image     iconsSub[] = {
+    {{0, 0}, {0, 0}, (uint8_t*)playImage},
+    {{0, 0}, {0, 0}, (uint8_t*)playImage}
+};
+
+
+void on_test_component_menu(CCDeviceHandler* handler)
+{
+    CCGraphicTextEdit   edit;
+    CCGraphic_AsciiTextItem item;
+    CCGraphic_Point p;
+    p.x = 0;
+    p.y = 0;
+    CCGraphic_Size acceptablesize = 
+        CCGraphicWidget_MaxAcceptable_Size(handler);
+    CCGraphicWidget_init_AsciiTextItem(
+        &item, p, acceptablesize, ASCII_8x16
+    );
+    CCGraphic_init_CCGraphicTextEdit(
+        &edit, handler, &item
+    );
+
+    CCGraphic_init_Menu(&menu, items, 4, &edit, &animations, ENABLE_ANIMATIONS);
+    CCGraphic_init_Menu(&submenu, itemsSub, 2, &edit, &animations, ENABLE_ANIMATIONS);
+    
+    menu.operations.common.show(&menu);
+    HAL_Delay(1000);
+    menu.operations.switchToIndex(&menu, 1);
+    HAL_Delay(500);
+    menu.operations.enabled_showAnimations(&menu, 0);
+    HAL_Delay(500);
+    menu.operations.enabled_showAnimations(&menu, 1);
+    HAL_Delay(500);
+    menu.operations.enabled_showAnimations(&menu, 0);
+    HAL_Delay(500);
+    menu.operations.enabled_showAnimations(&menu, 1);
+    
+    HAL_Delay(500);
+    menu.operations.switchToIndex(&menu, 2);
+    HAL_Delay(500);
+    menu.operations.switchToIndex(&menu, 3);
+    HAL_Delay(500);
+    menu.operations.switchToIndex(&menu, 1);
+    HAL_Delay(500);
+    // // icons
+    menu.operations.setIcon(&menu, icons, 4);
+    HAL_Delay(500);
+    menu.operations.switchToIndex(&menu, 2);
+    HAL_Delay(500);
+    menu.operations.switchToIndex(&menu, 3);
+    HAL_Delay(500);
+    menu.operations.hideIcon(&menu);
+    HAL_Delay(500);
+    menu.operations.showIcon(&menu);
+    HAL_Delay(500);
+    menu.operations.switchToIndex(&menu, 0);
+    HAL_Delay(500);
+    menu.operations.switchToIndex(&menu, 0);
+    HAL_Delay(1000);
+    CCGraphic_Menu* sub = menu.operations.enterSub(&menu);
+    HAL_Delay(1000);
+    sub->operations.setIcon(sub, iconsSub, 2);
+    HAL_Delay(1000);
+    sub->operations.switchToIndex(sub, 1);
+    HAL_Delay(1000);
+    sub->operations.switchToIndex(sub, 0);
+    HAL_Delay(1000);
+    CCGraphic_Menu* parent = sub->operations.backParent(sub);
+    (void)parent;
+}

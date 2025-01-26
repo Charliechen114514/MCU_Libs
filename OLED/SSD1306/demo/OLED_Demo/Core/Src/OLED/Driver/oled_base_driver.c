@@ -193,7 +193,7 @@ void oled_helper_reversearea(OLED_Handle* handle,
     {
         for(uint8_t j = x; j < x + width; j++)
         {
-            OLED_GRAM[i / 8][j] ^= ~(0x01 << (i % 8));
+            OLED_GRAM[i / 8][j] ^= (0x01 << (i % 8));
         }
     }
 }

@@ -20,31 +20,8 @@ typedef void(*ClearDevice)(
 typedef void(*UpdateDevice)(
     CCDeviceHandler* handler);
 
-typedef void(*ReverseDevice)(
-    CCDeviceHandler* handler);
-
 typedef void(*SetPixel)(
-    CCDeviceHandler* handler, uint16_t x, uint16_t y);
-
-typedef void(*DrawArea)(
-    CCDeviceHandler* handler, 
-    uint16_t x, uint16_t y, 
-    uint16_t width, uint16_t height, uint8_t* sources
-);
-
-typedef void(*AreaOperation)(
-    CCDeviceHandler* handler, 
-    uint16_t x, uint16_t y, 
-    uint16_t width, uint16_t height
-);
-
-typedef enum{
-    CommonProperty_WIDTH,
-    CommonProperty_HEIGHT,
-    CommonProperty_SUPPORT_RGB
-}CommonProperty;
-
-typedef void(*FetchProperty)(CCDeviceHandler*, void*, CommonProperty p);
+    CCDeviceHandler* handler, uint8_t x, uint8_t y);
 
 typedef struct __DeviceOperations 
 {
@@ -52,12 +29,6 @@ typedef struct __DeviceOperations
     ClearDevice     clear_device_function;
     UpdateDevice    update_device_function;
     SetPixel        set_pixel_device_function;
-    ReverseDevice   reverse_device_function;
-    DrawArea        draw_area_device_function;
-    AreaOperation   clearArea_function;
-    AreaOperation   updateArea_function;
-    AreaOperation   reverseArea_function;
-    FetchProperty   property_function;
 }CCDeviceOperations;
 
 typedef struct __DeviceProperty
@@ -77,13 +48,10 @@ void __register_paintdevice(
     CCDeviceRawHandleConfig config, 
     CCDeviceType type);
 
-/* device delay */
-void __device_delay(uint16_t    sec);
-void __device_delayclock_enabled();
-void __device_usdelay(uint16_t  usec);
-
 #define register_oled_paintdevice(handler, raw, config) \
-    __register_paintdevice(handler, raw, config, OLED_Type)
+    __register_paintdevice(handler, raw_handle, config, OLED_Type)
+
+
 
 #endif
 

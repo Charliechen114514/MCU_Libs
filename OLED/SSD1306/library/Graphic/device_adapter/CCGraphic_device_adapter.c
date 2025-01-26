@@ -39,3 +39,54 @@ void __register_paintdevice(
     }
     blank_handler->operations.init_function(blank_handler, config);
 }
+
+static uint32_t g_fac_us = 0;            /* us 延时倍乘数 */
+static void inline __delay_init()
+{
+	g_fac_us = HAL_RCC_GetHCLKFreq() / 1000000;   //获取MCU的主频
+}
+
+static void __delay_us(uint32_t nus)
+{
+	uint32_t ticks;
+	uint32_t told,tnow,tcnt = 0;
+	uint32_t reload = SysTick->LOAD;    /*LOAD的值*/
+	ticks = nus * g_fac_us;             /*需要的节拍数*/
+
+	told = SysTick->VAL;                /*刚进入时的计数器值*/
+	while(1)
+	{
+		tnow = SysTick->VAL;
+		if(tnow != told)
+		{
+			if(tnow < told)
+			{
+				tcnt += told - tnow; /*注意一下SYSTICK是一个递减的计数器*/ 
+			}
+			else
+			{
+				tcnt += reload - tnow + told;
+			}
+			told = tnow;
+			if(tcnt >= ticks)
+			{
+				break;            /*时间超过/等于要延时的时间，则退出*/
+			}
+		}
+	}
+}
+
+void __device_delayclock_enabled()
+{
+    __delay_init();
+}
+
+void __device_usdelay(uint16_t  usec)
+{
+    __delay_us(usec);
+}
+
+void __device_delay(uint16_t    sec)
+{
+    HAL_Delay(sec);
+}

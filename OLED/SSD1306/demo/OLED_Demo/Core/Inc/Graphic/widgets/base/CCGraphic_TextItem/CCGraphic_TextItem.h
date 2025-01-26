@@ -71,6 +71,12 @@ void CCGraphicWidget_AsciiTextItem_setIndexedPoint(
     CCGraphic_Point*            p
 );
 
+void CCGraphicWidget_AsciiTextItem_relocate(
+    CCGraphic_AsciiTextItem*    item,
+    CCGraphic_Point             tl_point,
+    CCGraphic_Size              textHandleSize
+);
+
 
 /**
  * @brief Draws an AsciiTextItem on the specified device.

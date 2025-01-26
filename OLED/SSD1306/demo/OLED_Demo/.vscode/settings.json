@@ -29,6 +29,10 @@
         "ccgraphic_textedit.h": "c",
         "ccgraphic_components_common.h": "c",
         "ccgraphic_triangle.h": "c",
-        "ccgraphic_frame.h": "c"
+        "ccgraphic_frame.h": "c",
+        "ccgraphic_menu.h": "c",
+        "ccgraphic_menuconfigure.h": "c",
+        "ccgraphic_menuitem.h": "c",
+        "ccgraphic_menuanimations.h": "c"
     }
 }

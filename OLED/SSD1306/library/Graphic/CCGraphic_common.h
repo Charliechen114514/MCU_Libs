@@ -28,4 +28,8 @@ typedef struct __DeviceProperty CCDeviceHandler;
 typedef void*       CCGraphicItem;
 typedef uint16_t    SizeBaseType;
 
+#ifndef NULL
+#define NULL    ((void*)0)
+#endif
+
 #endif

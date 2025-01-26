@@ -34,6 +34,16 @@ void CCGraphicWidget_AsciiTextItem_setIndexedPoint(
 }
 
 
+void CCGraphicWidget_AsciiTextItem_relocate(
+    CCGraphic_AsciiTextItem*    item,
+    CCGraphic_Point             tl_point,
+    CCGraphic_Size              textHandleSize
+)
+{
+    item->tl_point          = tl_point;
+    item->TexthandleSize    = textHandleSize;
+}
+
 static void __pvt_draw_char_each(
     CCDeviceHandler*    device_handle, 
     CCGraphic_Image*    borrowing_image, 
