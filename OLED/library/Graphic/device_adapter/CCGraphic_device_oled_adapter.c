@@ -20,6 +20,16 @@ void init_device_oled(
                 handle, 
                 (OLED_HARD_IIC_Private_Config*)
                 (onProvideConfigs->related_configs));
+        case OLED_SOFT_SPI_DRIVER_TYPE:
+            oled_init_softspi_handle(
+                handle,
+                (OLED_SOFT_SPI_Private_Config*)(onProvideConfigs->related_configs)
+            );
+        case OLED_HARD_SPI_DRIVER_TYPE:
+            oled_init_hardspi_handle(
+                handle,
+                (OLED_HARD_SPI_Private_Config*)(onProvideConfigs->related_configs)
+            );
         break;
     }
 }

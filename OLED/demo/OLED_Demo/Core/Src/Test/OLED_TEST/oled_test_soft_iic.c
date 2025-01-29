@@ -2,8 +2,8 @@
 #include "OLED/Driver/soft_iic/soft_iic.h"
 /* configs should be in persist way */
 OLED_SOFT_IIC_Private_Config config;
-OLED_GPIOPack sda;
-OLED_GPIOPack scl;
+OLED_IICGPIOPack sda;
+OLED_IICGPIOPack scl;
 
 void user_init_soft_iic_oled_handle(OLED_Handle* handle)
 {

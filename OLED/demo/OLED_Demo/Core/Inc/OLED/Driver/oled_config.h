@@ -6,7 +6,7 @@
 #include "stm32f1xx_hal.h"
 
 /* command send fucntion */
-typedef void(*SendCommand)(void*, uint8_t cmd);
+typedef void(*SendCommand)(void*, uint8_t);
 /* data send fucntion */
 typedef void(*SendData)(void*, uint8_t*, uint16_t);
 
@@ -18,7 +18,9 @@ typedef struct __OLED_Operations{
 
 typedef enum {
     OLED_SOFT_IIC_DRIVER_TYPE,
-    OLED_HARD_IIC_DRIVER_TYPE
+    OLED_HARD_IIC_DRIVER_TYPE,
+    OLED_SOFT_SPI_DRIVER_TYPE,
+    OLED_HARD_SPI_DRIVER_TYPE
 }OLED_Driver_Type;
 
 /* OLED Communication requires this*/
@@ -35,6 +37,11 @@ typedef void* OLED_Handle_Private;
 typedef struct __OLED_HARD_IIC_Private_Config OLED_HARD_IIC_Private_Config;
 /* soft iic communication requires indications */
 typedef struct __OLED_SOFT_IIC_Private_Config OLED_SOFT_IIC_Private_Config;
+/* hard spi communication requires indications */
+typedef struct __OLED_HARD_SPI_Private_Config OLED_HARD_SPI_Private_Config;
+/* soft spi communication requires indications */
+typedef struct __OLED_SOFT_SPI_Private_Config OLED_SOFT_SPI_Private_Config;
+
 /* final handle */
 typedef struct __OLED_Handle_Type OLED_Handle;
 
@@ -45,6 +52,7 @@ typedef struct __OLED_Handle_Type OLED_Handle;
 /* oled chips selections */
 
 #ifdef SSD1306
+
 #include "configs/ssd1306.h"
 
 #elif SSD1309
@@ -52,6 +60,5 @@ typedef struct __OLED_Handle_Type OLED_Handle;
 #else
 #error "Unknown chips, please select in compile time using define!"
 #endif
-
 
 #endif

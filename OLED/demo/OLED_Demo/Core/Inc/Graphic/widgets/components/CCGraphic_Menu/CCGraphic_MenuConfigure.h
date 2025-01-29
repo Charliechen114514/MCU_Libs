@@ -19,4 +19,8 @@
 #define _DEFAULT_X_STEP     (0)
 #define _DEFAULT_Y_STEP     (ANIMATION_MEDIUM)
 
+#ifdef REQ_ANIMATION_DELAY
+#define ANIMATION_DELAY_MS  (20)
+#endif
+
 #endif

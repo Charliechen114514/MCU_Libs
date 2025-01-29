@@ -7,15 +7,15 @@
 typedef struct __oled_tmp_gpio_pack{
     GPIO_TypeDef*   port;
     uint16_t        pin;
-}OLED_GPIOPack;
+}OLED_IICGPIOPack;
 
 /* this will make the gpio used for iic */
 
 typedef struct __OLED_SOFT_IIC_Private_Config
 {
     /* soft gpio handling */ 
-    OLED_GPIOPack       sda;
-    OLED_GPIOPack       scl;
+    OLED_IICGPIOPack       sda;
+    OLED_IICGPIOPack       scl;
     uint32_t            accepted_time_delay;
     uint16_t            device_address;
     OLED_Operations     operation;
@@ -50,8 +50,8 @@ typedef struct __OLED_SOFT_IIC_Private_Config
 */
 void oled_bind_softiic_handle(
     OLED_SOFT_IIC_Private_Config*   config,
-    OLED_GPIOPack*                  sda,  
-    OLED_GPIOPack*                  scl,
+    OLED_IICGPIOPack*                  sda,  
+    OLED_IICGPIOPack*                  scl,
     uint16_t                        device_address,
     uint32_t                        accepted_time_delay
 );

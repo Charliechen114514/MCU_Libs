@@ -85,18 +85,16 @@ static void __pvt_iic_send_data(
 
 void oled_bind_softiic_handle(
     OLED_SOFT_IIC_Private_Config*   config,
-    OLED_GPIOPack*                  sda,  
-    OLED_GPIOPack*                  scl,
+    OLED_IICGPIOPack*                  sda,  
+    OLED_IICGPIOPack*                  scl,
     uint16_t                        device_address,
     uint32_t                        accepted_time_delay
 )
 {
     config->accepted_time_delay = accepted_time_delay;
     config->device_address = device_address;
-    config->sda.pin = sda->pin;
-    config->sda.port = sda->port;
-    config->scl.port = scl->port;
-    config->scl.pin = scl->pin;
+    config->sda = *sda;
+    config->scl = *scl;
     config->operation.command_sender    = __pvt_iic_send_command;
     config->operation.data_sender       = __pvt_iic_send_data;
     __pvt_on_init_iic_gpio(config);

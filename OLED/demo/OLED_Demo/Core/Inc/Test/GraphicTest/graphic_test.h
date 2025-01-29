@@ -5,7 +5,8 @@
 
 /* device test */
 void on_test_init_hardiic_oled(CCDeviceHandler* handle);
-
+void on_test_init_softspi_oled(CCDeviceHandler* handle);
+void on_test_init_hardspi_oled(CCDeviceHandler* handler);
 /* base test */
 void on_test_draw_points(CCDeviceHandler* handle);
 void on_test_draw_line(CCDeviceHandler* handle);

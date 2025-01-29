@@ -6,6 +6,8 @@
 #include "OLED/Driver/oled_base_driver.h"
 #include "OLED/Driver/hard_iic/hard_iic.h"
 #include "OLED/Driver/soft_iic/soft_iic.h"
+#include "OLED/Driver/soft_spi/soft_spi.h"
+#include "OLED/Driver/hard_spi/hard_spi.h"
 #include <memory.h>
 
 uint8_t oled_init_commands[] = {
@@ -34,6 +36,26 @@ uint8_t oled_init_commands[] = {
 };
 
 #define CMD_TABLE_SZ ( (sizeof(oled_init_commands)) / sizeof(oled_init_commands[0]) )
+
+const uint8_t oled_spi_init_command[] = {
+    0xFD, 0x12,         // 使能命令模式，解除写保护
+    0xAE,               // 关闭 OLED 面板
+    0xD5, 0xA0,         // 设置时钟分频比/振荡频率
+    0xA8, 0x3F,         // 设置复用比（1 到 64），1/64 占空比
+    0xD3, 0x00,         // 设置显示偏移，无偏移
+    0x40,               // 设置起始行地址
+    0xA1,               // 设置段映射，0xA1 正常
+    0xC8,               // 设置列扫描方向，0xC8 正常
+    0xDA, 0x12,         // 设置 COM 引脚硬件配置
+    0x81, 0x7F,         // 设置对比度控制寄存器
+    0xD9, 0x82,         // 设置预充电周期
+    0xDB, 0x34,         // 设置 VCOMH 电平
+    0xA4,               // 关闭整屏显示
+    0xA6,                // 关闭反显
+    0xAF
+};
+#define SPI_CMD_TABLE_SZ ( (sizeof(oled_spi_init_command)) / sizeof(oled_spi_init_command[0]) )
+
 uint8_t OLED_GRAM[OLED_HEIGHT][OLED_WIDTH];
 
 
@@ -57,6 +79,20 @@ static void __on_fetch_oled_table(
         {
             OLED_SOFT_IIC_Private_Config* config = 
                 (OLED_SOFT_IIC_Private_Config*)(handle->private_handle);
+            blank_operations->command_sender = config->operation.command_sender;
+            blank_operations->data_sender = config->operation.data_sender;
+        }break;
+        case OLED_SOFT_SPI_DRIVER_TYPE:
+        {
+            OLED_SOFT_SPI_Private_Config* config = 
+                (OLED_SOFT_SPI_Private_Config*)(handle->private_handle);
+            blank_operations->command_sender = config->operation.command_sender;
+            blank_operations->data_sender = config->operation.data_sender;
+        }break;
+        case OLED_HARD_SPI_DRIVER_TYPE:
+        {
+            OLED_HARD_SPI_Private_Config* config = 
+                (OLED_HARD_SPI_Private_Config*)(handle->private_handle);
             blank_operations->command_sender = config->operation.command_sender;
             blank_operations->data_sender = config->operation.data_sender;
         }break;
@@ -96,7 +132,7 @@ void oled_helper_update(OLED_Handle* handle)
 		/*设置光标位置为每一页的第一列*/
 		__pvt_oled_set_cursor(handle, j, 0);
 		/*连续写入128个数据，将显存数组的数据写入到OLED硬件*/
-		op_table.data_sender(handle->private_handle, OLED_GRAM[j], 128);
+		op_table.data_sender(handle->private_handle, OLED_GRAM[j], POINT_X_MAX);
 	}
 }
 
@@ -244,6 +280,32 @@ uint16_t    oled_width(OLED_Handle* handle)
 uint16_t    oled_height(OLED_Handle* handle)
 {
     return POINT_Y_MAX;
+}
+
+
+
+void oled_init_softspi_handle(
+    OLED_Handle* handle,
+    OLED_SOFT_SPI_Private_Config* config)
+{
+    handle->private_handle = config;
+    handle->stored_handle_type = OLED_SOFT_SPI_DRIVER_TYPE;
+    for(uint8_t i = 0; i < SPI_CMD_TABLE_SZ; i++)
+        config->operation.command_sender(config, oled_spi_init_command[i]);
+    oled_helper_clear_frame(handle);
+    oled_helper_update(handle);
+}
+
+void oled_init_hardspi_handle(
+    OLED_Handle* handle,
+    OLED_HARD_SPI_Private_Config* config)
+{
+    handle->private_handle = config;
+    handle->stored_handle_type = OLED_HARD_SPI_DRIVER_TYPE;
+    for(uint8_t i = 0; i < SPI_CMD_TABLE_SZ; i++)
+        config->operation.command_sender(config, oled_spi_init_command[i]);
+    oled_helper_clear_frame(handle);
+    oled_helper_update(handle);
 }
 
 #endif

@@ -21,6 +21,7 @@
 #include "main.h"
 #include "dma.h"
 #include "i2c.h"
+#include "spi.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -90,9 +91,11 @@ int main(void)
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_DMA_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
-  test_oled_functionalities();
-  test_graphic_functionalities();
+  test_oled_spi_functionalities();
+  test_graphic_hard_spi_functionalities();
+  
 
   /* USER CODE END 2 */
 

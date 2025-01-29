@@ -35,6 +35,16 @@ void oled_init_softiic_handle(
     OLED_SOFT_IIC_Private_Config* config
 );
 
+void oled_init_softspi_handle(
+    OLED_Handle* handle,
+    OLED_SOFT_SPI_Private_Config* config
+);
+
+void oled_init_hardspi_handle(
+    OLED_Handle* handle,
+    OLED_HARD_SPI_Private_Config* config
+);
+
 void oled_helper_clear_frame(OLED_Handle* handle);
 
 void oled_helper_update(OLED_Handle* handle);

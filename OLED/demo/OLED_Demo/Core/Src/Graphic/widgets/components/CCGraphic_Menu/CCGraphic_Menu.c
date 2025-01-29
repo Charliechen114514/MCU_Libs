@@ -232,6 +232,9 @@ void __pvt_do_stepped_animate(
     if(animations->y_step < 0){
         while(animations->tl_point.y > end_tl_p->y){
             __pvt_doByStep(animations);
+#ifdef REQ_ANIMATION_DELAY
+            __device_delay(ANIMATION_DELAY_MS);
+#endif
         }
     }
     // do the upper size animations
@@ -239,6 +242,9 @@ void __pvt_do_stepped_animate(
     {
         while(animations->tl_point.y < end_tl_p->y){
             __pvt_doByStep(animations);
+#ifdef REQ_ANIMATION_DELAY
+            __device_delay(ANIMATION_DELAY_MS);
+#endif
         }        
     }
     
