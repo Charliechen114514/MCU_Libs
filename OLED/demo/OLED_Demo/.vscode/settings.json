@@ -37,6 +37,8 @@
         "test_global.h": "c",
         "ssd1309.h": "c",
         "soft_spi.h": "c",
-        "hard_spi.h": "c"
+        "hard_spi.h": "c",
+        "fast_setup.h": "c",
+        "simple_text.h": "c"
     }
 }

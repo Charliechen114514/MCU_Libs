@@ -77,13 +77,13 @@ void __register_paintdevice(
     CCDeviceRawHandleConfig config, 
     CCDeviceType type);
 
+#define register_oled_paintdevice(handler, raw, config) \
+    __register_paintdevice(handler, raw, config, OLED_Type)
+
 /* device delay */
 void __device_delay(uint16_t    sec);
 void __device_delayclock_enabled();
 void __device_usdelay(uint16_t  usec);
-
-#define register_oled_paintdevice(handler, raw, config) \
-    __register_paintdevice(handler, raw, config, OLED_Type)
 
 #endif
 

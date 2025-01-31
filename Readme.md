@@ -5,3 +5,4 @@
 1. DHT11
 2. TM1637
 3. OLED Library
+4. Light Sensor

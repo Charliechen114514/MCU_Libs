@@ -8,6 +8,7 @@ void init_device_oled(
     OLED_Driver_Type type = onProvideConfigs->createType;
     switch(type)
     {
+#ifdef USE_SOFTIIC_PROTOCOL
         case OLED_SOFT_IIC_DRIVER_TYPE:
             oled_init_softiic_handle(
                 handle,
@@ -15,22 +16,29 @@ void init_device_oled(
                 (onProvideConfigs->related_configs)
             );
         break;
+#endif
+#ifdef USE_HARDIIC_PROTOCOL
         case OLED_HARD_IIC_DRIVER_TYPE:
             oled_init_hardiic_handle(
                 handle, 
                 (OLED_HARD_IIC_Private_Config*)
-                (onProvideConfigs->related_configs));
+                (onProvideConfigs->related_configs));break;
+#endif
+#ifdef USE_SOFTSPI_PROTOCOL
         case OLED_SOFT_SPI_DRIVER_TYPE:
             oled_init_softspi_handle(
                 handle,
                 (OLED_SOFT_SPI_Private_Config*)(onProvideConfigs->related_configs)
-            );
+            );break;
+#endif
+#ifdef USE_HARDSPI_PROTOCOL
         case OLED_HARD_SPI_DRIVER_TYPE:
             oled_init_hardspi_handle(
                 handle,
                 (OLED_HARD_SPI_Private_Config*)(onProvideConfigs->related_configs)
             );
         break;
+#endif
     }
 }
 

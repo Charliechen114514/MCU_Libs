@@ -4,9 +4,19 @@
 #include "Graphic/CCGraphic_device_adapter.h"
 
 /* device test */
+#ifdef USE_SOFTIIC_PROTOCOL
+void on_test_init_softiic_oled(CCDeviceHandler* device);
+#endif
+
+#ifdef USE_HARDIIC_PROTOCOL
 void on_test_init_hardiic_oled(CCDeviceHandler* handle);
+#endif
+#ifdef USE_SOFTSPI_PROTOCOL
 void on_test_init_softspi_oled(CCDeviceHandler* handle);
+#endif
+#ifdef USE_HARDSPI_PROTOCOL
 void on_test_init_hardspi_oled(CCDeviceHandler* handler);
+#endif
 /* base test */
 void on_test_draw_points(CCDeviceHandler* handle);
 void on_test_draw_line(CCDeviceHandler* handle);

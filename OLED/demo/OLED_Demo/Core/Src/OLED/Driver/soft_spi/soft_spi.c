@@ -1,5 +1,7 @@
 #include "OLED/Driver/soft_spi/soft_spi.h"
 
+#ifdef USE_SOFTSPI_PROTOCOL
+
 #define SET_SCL(config, pinstate) \
         do{\
             HAL_GPIO_WritePin(config->scl.port, config->scl.pin, (pinstate));\
@@ -105,3 +107,5 @@ void oled_bind_softspi_pack(OLED_SOFT_SPI_Private_Config* config,
     config->operation.data_sender       = __pvt_send_data;
     __pvt_init_soft_spi_gpio_init(config);    
 }
+
+#endif

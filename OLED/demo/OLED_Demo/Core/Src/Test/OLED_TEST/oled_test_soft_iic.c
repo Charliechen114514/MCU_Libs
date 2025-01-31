@@ -1,3 +1,5 @@
+#ifdef USE_SOFTIIC_PROTOCOL
+
 #include "Test/OLED_TEST/oled_test.h"
 #include "OLED/Driver/soft_iic/soft_iic.h"
 /* configs should be in persist way */
@@ -17,3 +19,5 @@ void user_init_soft_iic_oled_handle(OLED_Handle* handle)
     );
     oled_init_softiic_handle(handle, &config);
 }
+
+#endif

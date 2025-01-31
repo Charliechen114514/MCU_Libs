@@ -1,4 +1,5 @@
 #include "OLED/Driver/soft_iic/soft_iic.h"
+#ifdef USE_SOFTIIC_PROTOCOL
 
 #define SET_SCL(config, pinstate) \
         do{\
@@ -99,3 +100,5 @@ void oled_bind_softiic_handle(
     config->operation.data_sender       = __pvt_iic_send_data;
     __pvt_on_init_iic_gpio(config);
 }
+
+#endif

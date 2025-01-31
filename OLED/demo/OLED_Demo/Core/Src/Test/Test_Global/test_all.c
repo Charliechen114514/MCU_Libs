@@ -1,6 +1,7 @@
 #include "Test/OLED_TEST/oled_test.h"
 #include "Test/GraphicTest/graphic_test.h"
 #include "Graphic/widgets/components/CCGraphic_TextEdit/CCGraphic_TextEdit.h"
+#if defined(USE_SOFTIIC_PROTOCOL) || defined(USE_HARDIIC_PROTOCOL)
 void test_oled_iic_functionalities()
 {
     OLED_Handle handle;
@@ -12,7 +13,9 @@ void test_oled_iic_functionalities()
     HAL_Delay(1000);
     test_clear(&handle);
 }
+#endif
 
+#if defined(USE_SOFTSPI_PROTOCOL) || defined(USE_HARDSPI_PROTOCOL) 
 void test_oled_spi_functionalities()
 {
     OLED_Handle handle;
@@ -24,6 +27,7 @@ void test_oled_spi_functionalities()
     HAL_Delay(1000);
     test_clear(&handle);
 }
+#endif
 
 static void __helper_on_set_text(CCGraphicTextEdit* edit, char* sources, uint32_t shown_time)
 {
@@ -105,7 +109,17 @@ static void __test_common(CCDeviceHandler* handler)
     SET_TEXT_CONV("Finish Testing, enjoy!", 4);
 }
 
+#ifdef USE_SOFTIIC_PROTOCOL
+void test_graphic_softiic_functionalities()
+{
+    CCDeviceHandler handler;
+    on_test_init_softiic_oled(&handler);
 
+    __test_common(&handler);
+}
+#endif
+
+#ifdef USE_HARDIIC_PROTOCOL
 void test_graphic_hardiic_functionalities()
 {
     CCDeviceHandler handler;
@@ -113,20 +127,24 @@ void test_graphic_hardiic_functionalities()
 
     __test_common(&handler);
 }
+#endif
 
-void test_graphic_soft_spi_functionalities()
+#ifdef USE_SOFTSPI_PROTOCOL
+void test_graphic_softspi_functionalities()
 {
     CCDeviceHandler handler;
     on_test_init_softspi_oled(&handler);
 
     __test_common(&handler);
 }
+#endif
 
-
-void test_graphic_hard_spi_functionalities()
+#ifdef USE_HARDSPI_PROTOCOL
+void test_graphic_hardspi_functionalities()
 {
     CCDeviceHandler handler;
     on_test_init_hardspi_oled(&handler);
 
     __test_common(&handler);
 }
+#endif

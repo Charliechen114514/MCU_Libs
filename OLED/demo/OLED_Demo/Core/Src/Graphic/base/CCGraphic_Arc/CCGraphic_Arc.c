@@ -20,27 +20,26 @@ static uint8_t __pvt_is_in_angle(int16_t x, int16_t y, int16_t start, int16_t en
 {
     int16_t point_angle = (atan2(y, x) / 3.14 * 180);
 
-	if (start < end)	//起始角度小于终止角度的情况
-	{
-		/*如果指定角度在起始终止角度之间，则判定指定点在指定角度*/
-		if (point_angle >= start && point_angle <= end)
-		{
-			return 1;
-		}
-	}
-	else			//起始角度大于于终止角度的情况
-	{
-		/*如果指定角度大于起始角度或者小于终止角度，则判定指定点在指定角度*/
-		if (point_angle >= start || point_angle <= end)
-		{
-			return 1;
-		}
-	}
-	return 0;	
-
-    // return start < end ?
-    //     start < point_angle && point_angle < end :
-    //     start > point_angle || point_angle > end;
+	// if (start < end)	//起始角度小于终止角度的情况
+	// {
+	// 	/*如果指定角度在起始终止角度之间，则判定指定点在指定角度*/
+	// 	if (point_angle >= start && point_angle <= end)
+	// 	{
+	// 		return 1;
+	// 	}
+	// }
+	// else			//起始角度大于于终止角度的情况
+	// {
+	// 	/*如果指定角度大于起始角度或者小于终止角度，则判定指定点在指定角度*/
+	// 	if (point_angle >= start || point_angle <= end)
+	// 	{
+	// 		return 1;
+	// 	}
+	// }
+	// return 0;	
+    return start < end ?
+        (start < point_angle && point_angle < end):
+        (start > point_angle || point_angle > end);
 }
 
 #define DRAW_OFFSET_POINT(offsetx, offsety) \

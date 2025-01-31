@@ -1,5 +1,7 @@
 #include "OLED/Driver/hard_iic/hard_iic.h"
 
+#ifdef USE_HARDIIC_PROTOCOL
+
 #ifdef USE_DMA
 static uint8_t dma_ready = 1;
 static I2C_HandleTypeDef* current_handle;
@@ -92,3 +94,4 @@ void bind_hardiic_handle(
 #endif
 }
 
+#endif

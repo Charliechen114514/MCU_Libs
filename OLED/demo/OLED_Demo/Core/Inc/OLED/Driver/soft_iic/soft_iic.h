@@ -56,7 +56,4 @@ void oled_bind_softiic_handle(
     uint32_t                        accepted_time_delay
 );
 
-
-
-
 #endif

@@ -1,3 +1,5 @@
+#ifdef USE_SOFTSPI_PROTOCOL
+
 #include "Test/OLED_TEST/oled_test.h"
 #include "OLED/Driver/soft_spi/soft_spi.h"
 /* configs should be in persist way */
@@ -14,3 +16,5 @@ void user_init_soft_spi_oled_handle(OLED_Handle* handle)
     oled_bind_softspi_pack(&config, &sda, &scl, &res, &dc, &cs);
     oled_init_softspi_handle(handle, &config);
 }
+
+#endif

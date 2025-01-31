@@ -4,10 +4,22 @@
 // the linkage
 
 #include "OLED/Driver/oled_base_driver.h"
+
+#ifdef USE_HARDIIC_PROTOCOL
 #include "OLED/Driver/hard_iic/hard_iic.h"
+#endif
+
+#ifdef USE_SOFTIIC_PROTOCOL
 #include "OLED/Driver/soft_iic/soft_iic.h"
+#endif
+#ifdef USE_SOFTSPI_PROTOCOL
 #include "OLED/Driver/soft_spi/soft_spi.h"
+#endif
+
+#ifdef USE_HARDSPI_PROTOCOL
 #include "OLED/Driver/hard_spi/hard_spi.h"
+#endif
+
 #include <memory.h>
 
 uint8_t oled_init_commands[] = {
@@ -68,6 +80,7 @@ static void __on_fetch_oled_table(
 {
     switch (handle->stored_handle_type)
     {
+#ifdef USE_HARDIIC_PROTOCOL
         case OLED_HARD_IIC_DRIVER_TYPE:
         {
             OLED_HARD_IIC_Private_Config* config = 
@@ -75,6 +88,9 @@ static void __on_fetch_oled_table(
             blank_operations->command_sender = config->operation.command_sender;
             blank_operations->data_sender = config->operation.data_sender;
         }break;
+#endif
+
+#ifdef USE_SOFTIIC_PROTOCOL
         case OLED_SOFT_IIC_DRIVER_TYPE:
         {
             OLED_SOFT_IIC_Private_Config* config = 
@@ -82,6 +98,8 @@ static void __on_fetch_oled_table(
             blank_operations->command_sender = config->operation.command_sender;
             blank_operations->data_sender = config->operation.data_sender;
         }break;
+#endif
+#ifdef  USE_SOFTSPI_PROTOCOL
         case OLED_SOFT_SPI_DRIVER_TYPE:
         {
             OLED_SOFT_SPI_Private_Config* config = 
@@ -89,6 +107,8 @@ static void __on_fetch_oled_table(
             blank_operations->command_sender = config->operation.command_sender;
             blank_operations->data_sender = config->operation.data_sender;
         }break;
+#endif
+#ifdef  USE_HARDSPI_PROTOCOL
         case OLED_HARD_SPI_DRIVER_TYPE:
         {
             OLED_HARD_SPI_Private_Config* config = 
@@ -96,6 +116,7 @@ static void __on_fetch_oled_table(
             blank_operations->command_sender = config->operation.command_sender;
             blank_operations->data_sender = config->operation.data_sender;
         }break;
+#endif
         default:
             break;
     }
@@ -136,6 +157,7 @@ void oled_helper_update(OLED_Handle* handle)
 	}
 }
 
+#ifdef USE_HARDIIC_PROTOCOL
 void oled_init_hardiic_handle(
     OLED_Handle* handle, 
     OLED_HARD_IIC_Private_Config* config)
@@ -147,7 +169,9 @@ void oled_init_hardiic_handle(
     oled_helper_clear_frame(handle);
     oled_helper_update(handle);
 }
+#endif
 
+#ifdef USE_SOFTIIC_PROTOCOL
 void oled_init_softiic_handle(
     OLED_Handle* handle,
     OLED_SOFT_IIC_Private_Config* config)
@@ -159,6 +183,7 @@ void oled_init_softiic_handle(
     oled_helper_clear_frame(handle);
     oled_helper_update(handle);
 }
+#endif
 
 void oled_helper_setpixel(OLED_Handle* handle, uint16_t x, uint16_t y)
 {
@@ -283,7 +308,7 @@ uint16_t    oled_height(OLED_Handle* handle)
 }
 
 
-
+#ifdef USE_SOFTSPI_PROTOCOL
 void oled_init_softspi_handle(
     OLED_Handle* handle,
     OLED_SOFT_SPI_Private_Config* config)
@@ -295,7 +320,9 @@ void oled_init_softspi_handle(
     oled_helper_clear_frame(handle);
     oled_helper_update(handle);
 }
+#endif
 
+#ifdef USE_HARDSPI_PROTOCOL
 void oled_init_hardspi_handle(
     OLED_Handle* handle,
     OLED_HARD_SPI_Private_Config* config)
@@ -307,5 +334,6 @@ void oled_init_hardspi_handle(
     oled_helper_clear_frame(handle);
     oled_helper_update(handle);
 }
+#endif
 
 #endif

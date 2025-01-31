@@ -1,5 +1,5 @@
 #include "OLED/Driver/hard_spi/hard_spi.h"
-
+#ifdef USE_HARDSPI_PROTOCOL
 
 #define SET_RES(config, pinstate) \
         do{\
@@ -83,3 +83,5 @@ void oled_bind_hard_spi(
     blank_config->operation.data_sender = __pvt_send_data;
     __pvt_init_soft_spi_gpio_init(blank_config);
 }
+
+#endif

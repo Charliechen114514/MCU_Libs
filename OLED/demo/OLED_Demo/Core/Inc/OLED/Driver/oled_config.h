@@ -17,10 +17,18 @@ typedef struct __OLED_Operations{
 }OLED_Operations;
 
 typedef enum {
+#ifdef USE_SOFTIIC_PROTOCOL
     OLED_SOFT_IIC_DRIVER_TYPE,
+#endif
+#ifdef USE_HARDIIC_PROTOCOL
     OLED_HARD_IIC_DRIVER_TYPE,
+#endif
+#ifdef USE_SOFTSPI_PROTOCOL
     OLED_SOFT_SPI_DRIVER_TYPE,
+#endif
+#ifdef USE_HARDSPI_PROTOCOL
     OLED_HARD_SPI_DRIVER_TYPE
+#endif
 }OLED_Driver_Type;
 
 /* OLED Communication requires this*/

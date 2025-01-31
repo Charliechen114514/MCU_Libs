@@ -94,7 +94,7 @@ int main(void)
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
   test_oled_spi_functionalities();
-  test_graphic_hard_spi_functionalities();
+  test_graphic_hardspi_functionalities();
   
 
   /* USER CODE END 2 */
