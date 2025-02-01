@@ -23,9 +23,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
-#include "light_sensor/light_sensor.h"
-
 #include <stdio.h>
 #include "Graphic/CCGraphic_device_adapter.h"
 #include "Graphic/fast_setup/fast_setup.h"
@@ -49,7 +46,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+CCDeviceHandler handler;
+CCGraphicTextEdit edit;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -60,26 +58,26 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-CCDeviceHandler handler;
-CCGraphicTextEdit edit;
-LightSensor light_sensor;
-void display_the_states(uint8_t state)
-{
-    set_simple_text(&edit, &handler, state ? 
-      "Current Status: Light On": "Current Status: Light Off");
-}
-
+char buffer[30];
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-  if(GPIO_Pin == light_sensor.gpio_package.pin){
-    uint8_t value;
-    light_sensor.operations->from_remote_dc(&light_sensor, &value);
-    display_the_states(value);
+  if(GPIO_Pin == GPIO_PIN_1){
+    if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1))
+    {   
+      int state = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5);
+      snprintf(buffer,30, "states: %d", state);
+      set_simple_text(&edit, &handler, buffer);
+    }
+  }
+  if(GPIO_Pin == GPIO_PIN_5){
+    if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5))
+    {    
+      int state = !HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1);
+      snprintf(buffer,30, "states: %d", state);
+      set_simple_text(&edit, &handler, buffer);
+    }
   }
 }
-
-
 /* USER CODE END 0 */
 
 /**
@@ -112,8 +110,6 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   oled_soft_iic_setup(&handler);
-  LightSensorGPIOPack pack = {GPIOA, GPIO_PIN_0};
-  init_light_sensor(&light_sensor, &pack);
   set_simple_text(&edit, &handler, "Waiting the sensor's data...");
   /* USER CODE END 2 */
 
@@ -124,8 +120,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    
-
   }
   /* USER CODE END 3 */
 }
