@@ -1,0 +1,13 @@
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ..\Core\Src\graphic_test_base.c
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ../Core/Inc/Test/GraphicTest/graphic_test.h
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ../Core/Inc/Graphic/CCGraphic_device_adapter.h
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ../Core/Inc/Graphic/CCGraphic_common.h
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ../Core/Inc/Graphic/base/CCGraphic_Point/CCGraphic_Point.h
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ../Core/Inc/Graphic/base/CCGraphic_Base.h
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ../Core/Inc/Graphic/widgets/common/CCGraphic_Size/CCGraphic_Size.h
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ../Core/Inc/Graphic/base/CCGraphic_Line/CCGraphic_Line.h
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ../Core/Inc/Graphic/base/CCGraphic_Circle/CCGraphic_Circle.h
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ../Core/Inc/Graphic/base/CCGraphic_Rectangle/CCGraphic_Rectangle.h
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ../Core/Inc/Graphic/base/CCGraphic_Triangle/CCGraphic_Triangle.h
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ../Core/Inc/Graphic/base/CCGraphic_Ellipse/CCGraphic_Ellipse.h
+oled_demo_f103zet6_mdkversion\graphic_test_base.o: ../Core/Inc/Graphic/base/CCGraphic_Arc/CCGraphic_Arc.h
