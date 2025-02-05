@@ -104,7 +104,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-      display_captured_frequency555();
+      // display_captured_frequency555();
   }
   /* USER CODE END 3 */
 }

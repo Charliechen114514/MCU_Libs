@@ -38,7 +38,7 @@ I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h)(0x678F6517)
 I (../Core/Inc/fonts.h)(0x6745BD04)
 I (D:\MDK5\ARM\ARMCC\include\string.h)(0x6025237E)
 I (D:\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
-F (..\Core\Src\pwm_capture.c)(0x679F354B)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_3_Internel_PWM_Test-ID:\MDK5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK5\ARM\PACK\Keil\STM32G4xx_DFP\1.5.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o 3_internel_pwm_test\pwm_capture.o --omf_browse 3_internel_pwm_test\pwm_capture.crf --depend 3_internel_pwm_test\pwm_capture.d)
+F (..\Core\Src\pwm_capture.c)(0x67A198AA)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_3_Internel_PWM_Test-ID:\MDK5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK5\ARM\PACK\Keil\STM32G4xx_DFP\1.5.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o 3_internel_pwm_test\pwm_capture.o --omf_browse 3_internel_pwm_test\pwm_capture.crf --depend 3_internel_pwm_test\pwm_capture.d)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h)(0x678F6517)
 I (../Core/Inc/stm32g4xx_hal_conf.h)(0x679F3C11)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h)(0x678F6517)
@@ -107,7 +107,7 @@ I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h)(0x678F6517)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h)(0x678F6517)
 I (../Core/Inc/gpio.h)(0x679F3C10)
 I (../Core/Inc/main.h)(0x679F3C11)
-F (../Core/Src/main.c)(0x679F3C76)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_3_Internel_PWM_Test-ID:\MDK5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK5\ARM\PACK\Keil\STM32G4xx_DFP\1.5.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o 3_internel_pwm_test\main.o --omf_browse 3_internel_pwm_test\main.crf --depend 3_internel_pwm_test\main.d)
+F (../Core/Src/main.c)(0x67A186E6)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_3_Internel_PWM_Test-ID:\MDK5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK5\ARM\PACK\Keil\STM32G4xx_DFP\1.5.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o 3_internel_pwm_test\main.o --omf_browse 3_internel_pwm_test\main.crf --depend 3_internel_pwm_test\main.d)
 I (../Core/Inc/main.h)(0x679F3C11)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h)(0x678F6517)
 I (../Core/Inc/stm32g4xx_hal_conf.h)(0x679F3C11)
@@ -175,7 +175,7 @@ I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h)(0x678F6517)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h)(0x678F6517)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h)(0x678F6517)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h)(0x678F6517)
-F (../Core/Src/tim.c)(0x679F3C10)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_3_Internel_PWM_Test-ID:\MDK5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK5\ARM\PACK\Keil\STM32G4xx_DFP\1.5.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o 3_internel_pwm_test\tim.o --omf_browse 3_internel_pwm_test\tim.crf --depend 3_internel_pwm_test\tim.d)
+F (../Core/Src/tim.c)(0x67A192B6)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_3_Internel_PWM_Test-ID:\MDK5\ARM\PACK\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\MDK5\ARM\PACK\Keil\STM32G4xx_DFP\1.5.0\Drivers\CMSIS\Device\ST\STM32G4xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32G431xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G431xx-o 3_internel_pwm_test\tim.o --omf_browse 3_internel_pwm_test\tim.crf --depend 3_internel_pwm_test\tim.d)
 I (../Core/Inc/tim.h)(0x679F3C10)
 I (../Core/Inc/main.h)(0x679F3C11)
 I (../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h)(0x678F6517)

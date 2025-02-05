@@ -95,6 +95,7 @@ int main(void)
   lcdInit();
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
   TIM2->CCR2 = 50;
+  
   HAL_TIM_IC_Start_IT(&htim17, TIM_CHANNEL_1);
   /* USER CODE END 2 */
 

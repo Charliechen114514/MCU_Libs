@@ -39,10 +39,7 @@ void display_captured_frequency555(void)
         __make_real_display();
     }
 #else
-    snprintf(buffer, 20, "freq1: %d Hz", freq1);
-    lcd_middledisplay(Line0, buffer);
-    snprintf(buffer, 20, "freq2: %d Hz", freq2);
-    lcd_middledisplay(Line1, buffer);    
+    __make_real_display();    
 #endif
 }
 
@@ -51,11 +48,12 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
     uint32_t capture_value = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
     htim->Instance->CNT = 0;
     if(htim->Instance == TIM2){
-        freq2 = 80000000 / (80 * capture_value);
+        freq2 = HAL_RCC_GetSysClockFreq() / ((htim->Init.Prescaler + 1) * capture_value);
+        display_captured_frequency555();	// 直到发生采集了我们才求取
     }
-    
     if(htim->Instance == TIM16)
     {
-        freq1 = 80000000 / (80 * capture_value);
+        freq1 = HAL_RCC_GetSysClockFreq() / ((htim->Init.Prescaler + 1) * capture_value);
+        display_captured_frequency555();	// 直到发生采集了我们才求取
     }
 }
