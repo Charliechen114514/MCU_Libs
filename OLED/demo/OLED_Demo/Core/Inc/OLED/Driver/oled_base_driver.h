@@ -70,5 +70,11 @@ uint8_t     oled_support_rgb(OLED_Handle* handle);
 uint16_t    oled_width(OLED_Handle* handle);
 uint16_t    oled_height(OLED_Handle* handle);
 
+// open close_device
+void        open_oled(OLED_Handle* handle);
+void        close_oled(OLED_Handle* handle);
+
+// property setter
+void        set_property_oled(OLED_Handle* handle, void* data, char* property);
 
 #endif

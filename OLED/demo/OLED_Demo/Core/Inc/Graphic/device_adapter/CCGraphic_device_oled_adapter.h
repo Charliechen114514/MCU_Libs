@@ -41,4 +41,10 @@ void property_fetcher_device_oled(
     CCDeviceHandler* handler, void* getter, CommonProperty p
 );
 
+void open_device_oled(CCDeviceHandler* handler);
+void close_device_oled(CCDeviceHandler* handler);
+void set_property_device_oled(
+    CCDeviceHandler* handler, 
+    void* data, PropertyString property_string);
+
 #endif

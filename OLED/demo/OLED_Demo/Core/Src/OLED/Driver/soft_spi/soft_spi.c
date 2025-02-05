@@ -39,11 +39,18 @@ static void __pvt_init_soft_spi_gpio_init(OLED_SOFT_SPI_Private_Config* config)
     GPIO_InitTypeDef GPIO_InitStructure = {0};
     /* configuration */
     GPIO_InitStructure.Pin = 
-        config->sda.pin | config->scl.pin | config->cs.pin |
-            config->dc.pin | config->res.pin;
+        config->sda.pin;
     GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;
     GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_HIGH;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
+    HAL_GPIO_Init(config->sda.port, &GPIO_InitStructure);
+    GPIO_InitStructure.Pin = config->scl.pin;
+    HAL_GPIO_Init(config->scl.port, &GPIO_InitStructure);
+    GPIO_InitStructure.Pin = config->res.pin;
+    HAL_GPIO_Init(config->res.port, &GPIO_InitStructure);
+    GPIO_InitStructure.Pin = config->cs.pin;
+    HAL_GPIO_Init(config->cs.port, &GPIO_InitStructure);
+    GPIO_InitStructure.Pin = config->dc.pin;
+    HAL_GPIO_Init(config->dc.port, &GPIO_InitStructure);
     SET_RES(config, 0);
     HAL_Delay(200);
     SET_RES(config, 1);

@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "soft_iic.h": "c",
+        "common_iic.h": "c",
+        "stm32f1xx_hal.h": "c",
+        "simple_text.h": "c",
+        "fast_setup.h": "c",
+        "ccgraphic_common.h": "c",
+        "ccgraphic_device_adapter.h": "c",
+        "mpu6050.h": "c",
+        "mpu6050_register.h": "c"
+    }
+}

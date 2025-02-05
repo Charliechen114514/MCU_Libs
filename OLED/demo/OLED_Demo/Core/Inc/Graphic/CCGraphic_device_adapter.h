@@ -46,6 +46,11 @@ typedef enum{
 
 typedef void(*FetchProperty)(CCDeviceHandler*, void*, CommonProperty p);
 
+typedef char* PropertyString;
+typedef void(*SetProperty)(CCDeviceHandler*, void*, PropertyString);
+
+typedef void(*OpenCloseDevice)(CCDeviceHandler*);
+
 typedef struct __DeviceOperations 
 {
     Initer          init_function;
@@ -58,6 +63,9 @@ typedef struct __DeviceOperations
     AreaOperation   updateArea_function;
     AreaOperation   reverseArea_function;
     FetchProperty   property_function;
+    OpenCloseDevice open_function;
+    OpenCloseDevice close_function;
+    SetProperty     property_setter_function;
 }CCDeviceOperations;
 
 typedef struct __DeviceProperty

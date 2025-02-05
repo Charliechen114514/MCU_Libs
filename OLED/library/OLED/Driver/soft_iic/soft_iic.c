@@ -20,11 +20,13 @@ static void __pvt_on_init_iic_gpio(OLED_SOFT_IIC_Private_Config* config)
 
     GPIO_InitTypeDef GPIO_InitStructure = {0};
     /* configuration */
-    GPIO_InitStructure.Pin = config->sda.pin | config->scl.pin;
+    GPIO_InitStructure.Pin = config->scl.pin;
     GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_OD;
     GPIO_InitStructure.Pull = GPIO_NOPULL;
     GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_HIGH;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
+    HAL_GPIO_Init(config->scl.port, &GPIO_InitStructure);
+    GPIO_InitStructure.Pin =  config->sda.pin;
+    HAL_GPIO_Init(config->sda.port, &GPIO_InitStructure);
     SET_SCL(config, 1);
     SET_SDA(config, 1);
 }

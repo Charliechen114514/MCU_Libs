@@ -308,6 +308,29 @@ uint16_t    oled_height(OLED_Handle* handle)
 }
 
 
+void open_oled(OLED_Handle* handle)
+{
+    OLED_Operations op_table;
+    __on_fetch_oled_table(handle, &op_table);  
+    op_table.command_sender(handle->private_handle, 0xAF);
+}
+
+
+void close_oled(OLED_Handle* handle)
+{
+    OLED_Operations op_table;
+    __on_fetch_oled_table(handle, &op_table);  
+    op_table.command_sender(handle->private_handle, 0xAE);
+}
+
+void set_property_oled(OLED_Handle* handle, void* data, char* property)
+{
+    (void)handle;
+    (void)data;
+    (void)property;
+    return;
+}
+
 #ifdef USE_SOFTSPI_PROTOCOL
 void oled_init_softspi_handle(
     OLED_Handle* handle,

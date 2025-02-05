@@ -128,3 +128,23 @@ void property_fetcher_device_oled(
         break;
     }
 }
+
+void open_device_oled(CCDeviceHandler* handler)
+{
+    OLED_Handle* handle = (OLED_Handle*)handler->handle;
+    open_oled(handle);
+}
+
+void close_device_oled(CCDeviceHandler* handler)
+{
+    OLED_Handle* handle = (OLED_Handle*)handler->handle;
+    close_oled(handle);
+}
+
+void set_property_device_oled(
+    CCDeviceHandler* handler, 
+    void* data, PropertyString property_string)
+{
+    OLED_Handle* handle = (OLED_Handle*)handler->handle;
+    set_property_oled(handle, data, property_string);
+}

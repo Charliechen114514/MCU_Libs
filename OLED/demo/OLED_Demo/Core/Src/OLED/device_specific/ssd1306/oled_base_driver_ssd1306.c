@@ -264,4 +264,31 @@ uint16_t    oled_height(OLED_Handle* handle)
     return POINT_Y_MAX;
 }
 
+void open_oled(OLED_Handle* handle)
+{
+    OLED_Operations op_table;
+    __on_fetch_oled_table(handle, &op_table);  
+    op_table.command_sender(handle->private_handle, 0x8D);
+    op_table.command_sender(handle->private_handle, 0x14);
+    op_table.command_sender(handle->private_handle, 0xAF);
+}
+
+void close_oled(OLED_Handle* handle)
+{
+    OLED_Operations op_table;
+    __on_fetch_oled_table(handle, &op_table);  
+    op_table.command_sender(handle->private_handle, 0x8D);
+    op_table.command_sender(handle->private_handle, 0x10);
+    op_table.command_sender(handle->private_handle, 0xAE);
+}
+
+void set_property_oled(OLED_Handle* handle, void* data, char* property)
+{
+    (void)handle;
+    (void)data;
+    (void)property;
+    return;
+}
+
+
 #endif

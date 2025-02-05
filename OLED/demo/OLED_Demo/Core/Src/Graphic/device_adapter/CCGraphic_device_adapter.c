@@ -34,6 +34,9 @@ void __register_paintdevice(
                 draw_area_device_oled;
             blank_handler->operations.property_function = 
                 property_fetcher_device_oled;
+            blank_handler->operations.open_function = open_device_oled;
+            blank_handler->operations.close_function = close_device_oled;
+            blank_handler->operations.property_setter_function = set_property_device_oled;
         }
         break;
     }
@@ -83,6 +86,7 @@ void __device_delayclock_enabled()
 
 void __device_usdelay(uint16_t  usec)
 {
+    __device_delayclock_enabled();
     __delay_us(usec);
 }
 
