@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "Test/Test_Global/test_global.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -86,7 +86,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  // gnf vcc scl sda res dc cs 
+  test_oled_spi_functionalities();
+  test_graphic_softspi_functionalities();
   /* USER CODE END 2 */
 
   /* Infinite loop */

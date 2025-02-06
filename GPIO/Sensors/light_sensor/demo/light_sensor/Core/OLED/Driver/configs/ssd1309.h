@@ -1,0 +1,40 @@
+#ifndef SSD1309_H
+#define SSD1309_H
+
+/* hardware level defines */
+#define PORT_SCL    GPIOB
+#define PORT_SDA    GPIOB
+#define PIN_SCL     GPIO_PIN_8
+#define PIN_SDA     GPIO_PIN_9
+
+#define OLED_ENABLE_GPIO_SCL_CLK() __HAL_RCC_GPIOB_CLK_ENABLE()
+#define OLED_ENABLE_GPIO_SDA_CLK() __HAL_RCC_GPIOB_CLK_ENABLE()
+
+/* SPI one */
+#define SPI_PORT_SCL    GPIOA
+#define SPI_PORT_SDA    GPIOA
+#define SPI_PORT_RES    GPIOA
+#define SPI_PORT_CS     GPIOA
+#define SPI_PORT_DC     GPIOA
+
+#define SPI_PIN_SCL     GPIO_PIN_0
+#define SPI_PIN_SDA     GPIO_PIN_1
+#define SPI_PIN_RES     GPIO_PIN_2
+#define SPI_PIN_DC      GPIO_PIN_3
+#define SPI_PIN_CS      GPIO_PIN_4
+
+
+#define OLED_SPI_ENABLE_GPIO_SDA_CLK() __HAL_RCC_GPIOA_CLK_ENABLE()
+#define OLED_SPI_ENABLE_GPIO_SCL_CLK() __HAL_RCC_GPIOA_CLK_ENABLE()
+#define OLED_SPI_ENABLE_GPIO_RES_CLK() __HAL_RCC_GPIOA_CLK_ENABLE()
+#define OLED_SPI_ENABLE_GPIO_DC_CLK() __HAL_RCC_GPIOA_CLK_ENABLE()
+#define OLED_SPI_ENABLE_GPIO_CS_CLK() __HAL_RCC_GPIOA_CLK_ENABLE()
+
+#define OLED_WIDTH  (144)
+#define OLED_HEIGHT (8)
+
+#define POINT_X_MAX     (128)
+#define POINT_Y_MAX     (OLED_HEIGHT * 8)
+
+
+#endif

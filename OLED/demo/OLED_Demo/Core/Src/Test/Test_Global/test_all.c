@@ -146,5 +146,6 @@ void test_graphic_hardspi_functionalities()
     on_test_init_hardspi_oled(&handler);
 
     __test_common(&handler);
+    // on_test_draw_clk(&handler);
 }
 #endif

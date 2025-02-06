@@ -2,6 +2,7 @@
 #include "stm32f1xx_hal.h"
 #include "Graphic/widgets/base/CCGraphic_TextItem/CCGraphic_TextItem.h"
 #include "Graphic/widgets/components/CCGraphic_TextEdit/CCGraphic_TextEdit.h"
+#include "Graphic/widgets/components/CCGraphic_Clock/CCGraphic_Clock.h"
 #include <stdio.h> // for snprintf
 
 
@@ -157,4 +158,22 @@ void on_test_component_menu(CCDeviceHandler* handler)
     HAL_Delay(1000);
     CCGraphic_Menu* parent = sub->operations.backParent(sub);
     (void)parent;
+}
+
+void on_test_draw_clk(CCDeviceHandler* handler)
+{
+    CCGrapghic_Clock    clk;
+    CCGraphic_Circle    circle;
+    CCGraphic_Point p;
+    p.x = 32;
+    p.y = 32;
+    CCGraphic_init_circle(&circle, p, 30);
+    initCCGraphic_Clock(&clk, handler, &circle);
+    CCGraphic_Time time = {0, 0, 0};
+    CCGraphic_Time addee = {1, 0, 0};
+    for(uint16_t i = 0; i <= 9600; i++){
+        CCGrapgic_Time_addTime(&time, &addee);
+        clk.op.updateTime(&clk, &time);
+        HAL_Delay(10);
+    }
 }

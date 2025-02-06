@@ -93,7 +93,7 @@ int main(void)
   MX_DMA_Init();
   MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
-  test_oled_spi_functionalities();
+  // test_oled_spi_functionalities();
   test_graphic_hardspi_functionalities();
   
 

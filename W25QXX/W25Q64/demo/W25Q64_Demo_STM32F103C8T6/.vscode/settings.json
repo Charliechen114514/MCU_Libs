@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "soft_spi.h": "c",
+        "spi_common.h": "c",
+        "wx25q64.h": "c",
+        "wx25q64_reg.h": "c"
+    }
+}

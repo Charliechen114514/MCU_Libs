@@ -39,6 +39,10 @@
         "soft_spi.h": "c",
         "hard_spi.h": "c",
         "fast_setup.h": "c",
-        "simple_text.h": "c"
+        "simple_text.h": "c",
+        "ccgraphic_clock_settings.h": "c",
+        "ccgraphic_clock.h": "c",
+        "ccgraphic_time.h": "c",
+        "ccgraphic_circle.h": "c"
     }
 }
